@@ -1,0 +1,21 @@
+﻿
+@model IEnumerable<AutoShop.Models.cars>
+
+
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var car in Model)
+{
+    <div>
+        <h2>@car.Name</h2>
+        <h3>@car.Price.ToString("C")</h3> <!--write as currency-->
+    </div>
+}
+
+
+<!--#Step 11- Create a Shared folder to hold the Layout of the page -->
+<!--#Step 12- Add _Layout.cshtml to Shared folder -->
+<!--#Step 13- _ViewStart.cshtml to Views folder, to render <!DOCTYPE> code within all pages-->
+
+<!--#Step14- Create a ViewModel folder in the root folder (AutoShop) to wrap all data used in the Application-->
