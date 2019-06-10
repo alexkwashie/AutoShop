@@ -1,3 +1,10 @@
-WWW.TechTools.NET - www.ThumperDC.COM
-
-ThumperDC - ThumperTM - TechTools
+1. Create a class - AppDbContext in the Models folder
+2. Create new class Cars Repositry()too link information to the database with EF core.
+3. Regiser in the startup.cs file that you will be using EF core and the database type
+4. Add a appsettings.json(App settings File) file to the main folder to create SQL connection
+5. Add Configuation to Startup.cs file to enable datasbase connection
+6. Use Ef core to creat the database by using migrations with the Package amanger Console(view -> Other windows -> Package amanger Console)
+7. type this in the console - add-migration InitialMigration (if failed, try running it again with HomeController opened)
+8.Now update database with - update-database
+9. Create a class in the Models folder - 'DbInitializer' to hold new data.
+10. Call the Seed() method from the DbInitializer class in the Main class in the Program.cs file
