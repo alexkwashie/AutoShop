@@ -42,7 +42,7 @@ namespace AutoShop.Controllers
             //@ #Step17 - Initialize and assign values to the properties from HomeViewModel 
             var homeviewmodel = new HomeViewModel()
             {
-                Title = "Welcome AutoShp Car Intl",
+                Title = "Welcome AutoShop Car Intl",
                 GetCars = cars.ToList()
             };
 

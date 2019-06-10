@@ -1,21 +1,26 @@
-﻿
-@model IEnumerable<AutoShop.Models.cars>
+﻿<!--//#Step19 - Replace IEnumerable<AutoShop.Models.cars> with below:-->
+@model AutoShop.ViewModels.HomeViewModel
 
 
 
-<h2>@ViewBag.Title</h2>
+<h2>@Model.Title</h2>  <!--Model is referencing HomeViewModel (above)-->
 
-@foreach (var car in Model)
+@foreach (var car in Model.GetCars)
 {
-    <div>
-        <h2>@car.Name</h2>
-        <h3>@car.Price.ToString("C")</h3> <!--write as currency-->
-    </div>
+  
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img src="@car.ImageThumbnailUrl" alt=""/>
+                <h2>@car.Name</h2>
+                <h3>@car.Price.ToString("C")</h3> <!--write as currency-->
+                <p>@car.ShortDescription</p>
+            </div>
+        </div>
+    
 }
 
 
 <!--#Step 11- Create a Shared folder to hold the Layout of the page -->
 <!--#Step 12- Add _Layout.cshtml to Shared folder -->
-<!--#Step 13- _ViewStart.cshtml to Views folder, to render <!DOCTYPE> code within all pages-->
-
+<!--#Step 13- Create a _ViewStart.cshtml in Views folder, to render <!DOCTYPE> code within all pages-->
 <!--#Step14- Create a ViewModel folder in the root folder (AutoShop) to wrap all data used in the Application-->

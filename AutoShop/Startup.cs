@@ -6,6 +6,8 @@ using AutoShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AutoShop
@@ -14,10 +16,20 @@ namespace AutoShop
     {   //This is where to register dependecy injections
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
+
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+
         public void ConfigureServices(IServiceCollection services)
         {
             //#Step5 - Use a AddTransient service i.e. when a ICarsRepository is requested, a new MockCarsRepository is returned everytime
-            services.AddTransient<ICarsRepository, MockCarsRepository>();
+            //services.AddTransient<ICarsRepository, MockCarsRepository>();
 
             //###Step6 Create Controller folder##
 
@@ -26,7 +38,20 @@ namespace AutoShop
 
             //#Step2
             services.AddMvc();
-                       
+
+
+
+            //#####################################################
+
+                
+            //Connection for EF core & database type
+            services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //from Startup.cs file
+            //Add a appsettings file to the main folder to create SQL connection
+
+            //Use a AddTransient service i.e. when a ICarsRepository is requested, a new CarsRepository is returned everytime
+            services.AddTransient<ICarsRepository, CarsRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
